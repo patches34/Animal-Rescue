@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     LayerMask groundLayer;
 
+    [SerializeField]
+    SpriteRenderer sprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +105,19 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
+    private void Update()
+    {
+        if(movementDirection.x < 0)
+        {
+            transform.localScale = new Vector3(-1f, 1f, 1f);
+        }
+        else if(movementDirection.x > 0)
+        {
+            transform.localScale = new Vector3(1f, 1f, 1f);
+        }
+        //sprite.flipX = (movementDirection.x < 0) ? true : false;
+    }
+
     private void FixedUpdate()
     {
         WallState lastWallState = currentWallState;// == WallState.None;
